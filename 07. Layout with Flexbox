@@ -1,0 +1,81 @@
+React Native
+============
+
+---
+
+Layout with Flexbox ([링크](https://facebook.github.io/react-native/docs/flexbox.html))
+------------------------------------------------------------------------
+
+> - 컴포넌트는 flaxbox 알고리즘을 이용한 자식의 특정한 레이아웃을 지정할 수 있음 
+> - Flexbox는 다양한 화면크기에서 일관된 레이아웃을 제공가능 
+
+> - 일반적으로 flexDirection, alignItems 그리고 jastifyContent를 사용하여 적절한 레이아웃을 생성가능 
+
+---
+**주의**
+
+  Flexbox는 웹상에서의 CSS처럼 React Native에서 돋일하게 동작하지만, 몇가지 예외사항이 존재함. flexDirection은 기본적으로 row 대신 column을 기본으로 하며, flex 파라미터는 오직 단일 숫자로만 지원가능.
+
+---
+
+
+#### Flex Direction
+
+> - 레이아웃의 기본 축을 결정하기 위해 flexDirection을 레이아웃의 컴포넌트의 스타일로 추가하자.
+> - 자식 컴포넌트들의 출력기준이 column이 되는것을 확인 
+
+~~~
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class FlexDirectionBasics extends Component {
+  render() {
+    return (
+      // Try setting `flexDirection` to `column`.
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+};
+
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('AwesomeProject', () => FlexDirectionBasics);
+
+#### justifyContent
+
+> - 기본 축에 따른 자식 컴포넌트를 결정하기 위해 컴포넌트의 스타일에 justifyContent를  
+> - 자식 컴포넌트들은 시작점, 중앙, 끝 또는 동일한 간격으로 배치되는가?
+> - 사용가능한 옵션으로는 flex-start, center, flex-end, space-around, space-between 그리고 space-evenly가 있음
+
+~~~
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class JustifyContentBasics extends Component {
+  render() {
+    return (
+      // Try setting `justifyContent` to `center`.
+      // Try setting `flexDirection` to `row`.
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+      }}>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+};
+
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('AwesomeProject', () => JustifyContentBasics);
+~~~
+
+
+
+~~~
