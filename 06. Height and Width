@@ -1,0 +1,76 @@
+React Native
+============
+
+---
+
+Height and Width ([링크](https://facebook.github.io/react-native/docs/height-and-width.html))
+------------------------------------------------------------------------
+
+> - 화면상에서 컴포넌트의 자체의 높이와 너비를 결정
+
+#### 고정수치 (Fixed Dimensions)
+
+> - 컴포넌트의 수치를 설정하는 가장 간단한 방법은 고정된 너비와 높이를 스타일에 추가하는 것
+> - React Native에서의 모든 수치값은 단위가 없고, 멀도와 관계없는 픽셀을 나타냄
+
+```
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class FixedDimensionsBasics extends Component {
+  render() {
+    return (
+      <View>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
+        <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('AwesomeProject', () => FixedDimensionsBasics);
+```
+
+> - 이 방법으로 수치값을 설정하는것은 화면의 밀도와 관계없이 항상 정확히 같은 크기로 렌더링 하는 컴포넌트에 적합
+
+#### 유동수치 (Flex Dimensions)
+
+> - Use flex in a component's style to have the component expand and shrink dynamically based on available space. Normally you will use flex: 1, which tells a component to fill all available space, shared evenly amongst each other component with the same parent. The larger the flex given, the higher the ratio of space a component will take compared to its siblings.
+> - 유효한 공간에서 유연하게 확대/축소되게 하려면 컴포넌트의 스타일에 유동수치를 적용함
+> - 일반적으로 flex: 1을 사용하면, 사용가능한 모든 공간을 모두 채우고, 같은 부모를 가진 다른 컴포넌트들과 동일하게 공유할 수 있음
+> - 주어진 flex값이 클수록 같은 레벨의 컴포넌트에 비해 높은 비율로 공간을 차지하게 됨
+
+---
+**주의**
+
+  컴포넌트의 부모가 0보다 큰 수치값을 갖는 경우, 컴포넌트는 사용가능한 공간을 채우기 위해서 확장 가능함. 부모가 고정된 너비값이나 높이값, 또는 flex값을 갖지 않는다면, 부모의 수치값은 0으로 되어 flex의 자식 컴포넌트는 보여지지 않게 됨.  
+
+---
+
+~~~
+import React, { Component } from 'react';
+import { AppRegistry, View } from 'react-native';
+
+export default class FlexDimensionsBasics extends Component {
+  render() {
+    return (
+      // Try removing the `flex: 1` on the parent View.
+      // The parent will not have dimensions, so the children can't expand.
+      // What if you add `height: 300` instead of `flex: 1`?
+      <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: 'powderblue'}} />
+        <View style={{flex: 2, backgroundColor: 'skyblue'}} />
+        <View style={{flex: 3, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
+// skip this line if using Create React Native App
+AppRegistry.registerComponent('AwesomeProject', () => FlexDimensionsBasics);
+~~~
+
+> - After you can control a component's size, the next step is to learn how to lay it out on the screen.
+> - 컴포넌트의 크기를 제어하기 위해, 다음장에서는 [화면상에 배치하는 방법](https://facebook.github.io/react-native/docs/flexbox.html)에 대해 배울 것임
